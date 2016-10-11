@@ -13,11 +13,19 @@ const bodyParser = require('body-parser');
 const socketio = require('feathers-socketio');
 const middleware = require('./middleware');
 const services = require('./services');
+const webpackDevMiddleware = require('webpack-dev-middleware')
+const webpack = require('webpack')
+const webpackConfig = require('../webpack.config')
+const compiler = webpack(webpackConfig)
 
 const app = feathers();
 
 app.configure(configuration(path.join(__dirname, '..')));
-
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+  app.use(webpackDevMiddleware(compiler, {
+    publicpath: webpackConfig.output.publicPath
+  }))
+}
 app.use(compress())
   .options('*', cors())
   .use(cors())
