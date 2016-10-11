@@ -6,7 +6,7 @@ const PLACEHOLDER = 'https://placeimg.com/60/60/people';
 
 const UserList = React.createClass({
   logout() {
-    app.logout().then(() => window.location.href = '/index.html');
+    app.logout().then(() => window.location.href = '/');
   },
 
   render() {
