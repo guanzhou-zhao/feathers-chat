@@ -16,16 +16,19 @@ const Login = React.createClass({
     this.setState({ password: ev.target.value });
   },
   handleSubmit(e) {
+    console.log('handle login');
     e.preventDefault()
     console.log('handle submit');
     var { email, password } = this.state
+    var { login } = this.props
     app.authenticate({
       type: 'local',
       'email': email,
       'password': password
     }).then(function(result){
       console.log('Authenticated!', app.get('token'));
-      hashHistory.push('/ChatApp')
+      login()
+      // hashHistory.push('/ChatApp')
     }).catch(function(error){
       console.error('Error authenticating!', error);
     });

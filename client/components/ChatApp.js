@@ -45,13 +45,23 @@ const ChatApp = React.createClass({
   },
 
   render() {
-    return <div className="flex flex-row flex-1 clear">
+    return(
+    <div id="app" className="flex flex-column">
+      <header className="title-bar flex flex-row flex-center">
+        <div className="title-wrapper block center-element">
+          <img className="logo" src="http://feathersjs.com/img/feathers-logo-wide.png"
+            alt="Feathers Logo" />
+          <span className="title">Chat</span>
+        </div>
+      </header>
+    <div className="flex flex-row flex-1 clear">
       <UserList users={this.state.users} />
       <div className="flex flex-column col col-9">
         <MessageList users={this.state.users} messages={this.state.messages} />
         <ComposeMessage />
       </div>
     </div>
+  </div>)
   }
 });
 
